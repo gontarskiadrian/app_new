@@ -1,35 +1,15 @@
 version: '3.8'
-services: 
-  backend:
-    build: ./backend
-    container_name: nodejs-app
-    ports:
-      - "3000:3000"
+services:
+  app:
+    image: gontarskiadrian/app_new:latest
+    ports: 
+    - "3000:3000"
+    - "27017:27017"
     environment:
       - MONGO_URL=mongodb://mongo:27017/movies
-    command: >
-      sh -c 'dockerize -wait tcp://mongo:27017 -timeout 30s &&
-      node app.js'
-    depends_on:
-      - mongo
-    networks:
-      - my-network
-    # network_mode: host
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    ports: 
-      - "27017:27017"
     volumes:
       - mongo-data:/data/db
-    networks:
-      - my-network
-    # network_mode: host
-
-  
-
+ 
+ 
 volumes:
   mongo-data:
-
-networks:
-  my-network:
