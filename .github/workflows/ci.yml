@@ -57,11 +57,11 @@ jobs:
  
     - name: Copy backend files to server
       run: |
-        scp -r -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ./backend/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/docker/app_new
+        scp -r -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ./backend/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/kursant/docker/app_new
  
     - name: Copy docker-compose.yml to server
       run: |
-        scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/docker/app_new
+        scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ./docker-compose.yml ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/kursant/docker/app_new
  
     - name: Deploy to server
       run: |
@@ -72,5 +72,5 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker pull ${{ secrets.DOCKER_USERNAME }}/backend:latest
           cd /home/docker/app_new
-          docker-compose -f /home/docker/app_new/docker-compose.yml up -d
+          docker-compose -f /home/kursant/docker/app_new/docker-compose.yml up -d
         EOF
