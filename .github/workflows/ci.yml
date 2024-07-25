@@ -69,8 +69,8 @@ jobs:
           # sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           # sudo chmod +x /usr/local/bin/docker-compose
           # sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker pull ${{ secrets.DOCKER_USERNAME }}/backend:latest
-          cd /home/docker/app_new
-          docker-compose -f /home/kursant/docker/app_new/docker-compose.yml up -d
+          sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/backend:latest
+          cd /home/kursant/docker/app_new
+          sudo docker-compose -f /home/kursant/docker/app_new/docker-compose.yml up -d
         EOF
